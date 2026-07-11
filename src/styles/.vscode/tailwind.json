@@ -1,0 +1,65 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@tailwind",
+      "description": "Use the @tailwind directive to insert Tailwind's base, components, utilities and screens styles into your CSS.",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#tailwind"
+        }
+      ]
+    },
+    {
+      "name": "@apply",
+      "description": "Use @apply to inline any existing utility classes into your own custom CSS.",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#apply"
+        }
+      ]
+    },
+    {
+      "name": "@layer",
+      "description": "Use the @layer directive to tell Tailwind which bucket a set of custom styles belong to.",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#layer"
+        }
+      ]
+    },
+    {
+      "name": "@screen",
+      "description": "Use @screen to create responsive breakpoints.",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#screen"
+        }
+      ]
+    },
+    {
+      "name": "@variants",
+      "description": "Generate variants for your own utilities.",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#variants"
+        }
+      ]
+    },
+    {
+      "name": "@responsive",
+      "description": "Generate responsive variants for your own utilities.",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#responsive"
+        }
+      ]
+    }
+  ]
+}

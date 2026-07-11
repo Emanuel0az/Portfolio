@@ -1,0 +1,122 @@
+/* ============================================================
+ * Fuentes
+ * ============================================================ */
+@import "@fontsource/inter/index.css";
+@import "@fontsource/jetbrains-mono/index.css";
+
+/* ============================================================
+ * Tailwind
+ * ============================================================ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+ * Base Styles
+ * ============================================================ */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: theme("fontFamily.sans");
+    background-color: theme("colors.background");
+    color: theme("colors.foreground");
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: theme("colors.background");
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: theme("colors.muted");
+    border-radius: theme("borderRadius.full");
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme("colors.muted-foreground");
+  }
+
+  ::selection {
+    background-color: rgba(124, 58, 237, 0.3);
+    color: theme("colors.foreground");
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.primary");
+    outline-offset: 2px;
+    border-radius: theme("borderRadius.sm");
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ============================================================
+ * Utility Classes
+ * ============================================================ */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      theme("colors.primary"),
+      theme("colors.secondary"),
+      theme("colors.accent")
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .container-custom {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
