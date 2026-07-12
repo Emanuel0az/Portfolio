@@ -13,7 +13,7 @@ const navLinks: NavLink[] = [
   { label: "Inicio", href: "#hero" },
   { label: "Sobre mí", href: "#about" },
   { label: "Proyectos", href: "#projects" },
-  { label: "Experiencia", href: "#experience" },
+  { label: "Trayectoria", href: "#experience" },
   { label: "Contacto", href: "#contact" },
 ];
 
@@ -22,7 +22,6 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const scrollProgress = useScrollProgress();
 
-  // Detectar scroll para activar glass effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -31,12 +30,10 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Cerrar menú móvil al hacer click en un enlace
   const handleNavClick = useCallback(() => {
     setIsMobileMenuOpen(false);
   }, []);
 
-  // Prevenir scroll cuando el menú móvil está abierto
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -53,7 +50,7 @@ export function Navbar() {
 
   return (
     <>
-      {/* Skip to main content - Accesibilidad */}
+      {/* Skip to main content */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none"
@@ -65,12 +62,12 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "glass border-b border-glass-border"
-            : "bg-transparent"
+            ? "bg-background/80 backdrop-blur-lg border-b border-border/50 shadow-lg shadow-black/10"
+            : "bg-background/50 backdrop-blur-sm"
         )}
         role="banner"
       >
-        {/* Barra de progreso de scroll */}
+        {/* Barra de progreso */}
         <div
           className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary via-secondary to-accent transition-[width] duration-150"
           style={{ width: `${scrollProgress}%` }}
@@ -86,7 +83,7 @@ export function Navbar() {
           role="navigation"
           aria-label="Navegación principal"
         >
-          {/* Logo / Nombre */}
+          {/* Logo */}
           <a
             href="#hero"
             className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
@@ -96,7 +93,7 @@ export function Navbar() {
             <span className="text-primary">.</span>
           </a>
 
-          {/* Enlaces de navegación - Desktop */}
+          {/* Enlaces desktop */}
           <ul className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -110,7 +107,7 @@ export function Navbar() {
             ))}
           </ul>
 
-          {/* Redes sociales + Botón menú móvil */}
+          {/* Redes + menú móvil */}
           <div className="flex items-center gap-3">
             {githubLink && (
               <a
@@ -118,7 +115,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={githubLink.label}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="p-2 text-muted-foreground hover:text-foreground hover:bg-surface rounded-lg transition-colors"
               >
                 <FiGithub size={20} />
               </a>
@@ -129,7 +126,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={linkedinLink.label}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="p-2 text-muted-foreground hover:text-foreground hover:bg-surface rounded-lg transition-colors"
               >
                 <FiLinkedin size={20} />
               </a>
@@ -138,7 +135,7 @@ export function Navbar() {
             {/* Botón menú móvil */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors rounded-md"
+              className="md:hidden p-2 text-foreground hover:bg-surface rounded-lg transition-colors"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
@@ -152,8 +149,8 @@ export function Navbar() {
         <div
           id="mobile-menu"
           className={cn(
-          "md:hidden fixed inset-0 top-16 z-40 bg-background/95 backdrop-blur-md transition-transform duration-300",
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            "md:hidden fixed inset-0 top-16 z-40 bg-background transition-transform duration-300",
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           )}
           aria-hidden={!isMobileMenuOpen}
         >
@@ -163,11 +160,35 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={handleNavClick}
-                className="px-4 py-3 text-lg text-muted-foreground hover:text-foreground hover:bg-surface rounded-lg transition-colors"
+                className="px-4 py-3 text-lg text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
               >
                 {link.label}
               </a>
             ))}
+            <div className="mt-6 pt-6 border-t border-border flex items-center gap-4">
+              {githubLink && (
+                <a
+                  href={githubLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
+                  aria-label={githubLink.label}
+                >
+                  <FiGithub size={22} />
+                </a>
+              )}
+              {linkedinLink && (
+                <a
+                  href={linkedinLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
+                  aria-label={linkedinLink.label}
+                >
+                  <FiLinkedin size={22} />
+                </a>
+              )}
+            </div>
           </nav>
         </div>
       </header>
