@@ -146,14 +146,29 @@ export function Navbar() {
         </nav>
 
         {/* Menú móvil */}
+        {/* Menú móvil */}
         <div
           id="mobile-menu"
           className={cn(
-            "md:hidden fixed inset-0 top-16 z-40 bg-background transition-transform duration-300",
-            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+         "md:hidden fixed inset-0 top-16 z-40 transition-transform duration-300",
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           )}
-          aria-hidden={!isMobileMenuOpen}
+             aria-hidden={!isMobileMenuOpen}
         >
+          {/* Fondo animado sutil */}
+          <div className="absolute inset-0 -z-10 bg-background">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(124,58,237,0.1),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(14,165,233,0.06),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,45,120,0.04),transparent_60%)]" />
+          <div
+              className="absolute inset-0 opacity-[0.02]"
+              style={{
+              backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+             backgroundSize: "60px 60px",
+            }}
+          />
+  </div>
           <nav className="flex flex-col p-6 gap-2" aria-label="Navegación móvil">
             {navLinks.map((link) => (
               <a
