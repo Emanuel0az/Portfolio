@@ -50,7 +50,6 @@ export function Navbar() {
 
   return (
     <>
-      {/* Skip to main content */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none"
@@ -67,7 +66,6 @@ export function Navbar() {
         )}
         role="banner"
       >
-        {/* Barra de progreso */}
         <div
           className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary via-secondary to-accent transition-[width] duration-150"
           style={{ width: `${scrollProgress}%` }}
@@ -83,7 +81,6 @@ export function Navbar() {
           role="navigation"
           aria-label="Navegación principal"
         >
-          {/* Logo */}
           <a
             href="#hero"
             className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
@@ -93,7 +90,6 @@ export function Navbar() {
             <span className="text-primary">.</span>
           </a>
 
-          {/* Enlaces desktop */}
           <ul className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -107,7 +103,6 @@ export function Navbar() {
             ))}
           </ul>
 
-          {/* Redes + menú móvil */}
           <div className="flex items-center gap-3">
             {githubLink && (
               <a
@@ -132,10 +127,9 @@ export function Navbar() {
               </a>
             )}
 
-            {/* Botón menú móvil */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-foreground hover:bg-surface rounded-lg transition-colors"
+              className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors rounded-md"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
@@ -145,57 +139,28 @@ export function Navbar() {
           </div>
         </nav>
 
-        {/* Menú móvil */}
-        {isMobileMenuOpen && (
-          <div
-            id="mobile-menu"
-            className="md:hidden fixed inset-0 top-16 z-40"
-            aria-hidden={!isMobileMenuOpen}
-          >
-            {/* Fondo sólido con gradientes */}
-            <div className="absolute inset-0 bg-[#0a0a0a]">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(124,58,237,0.15),transparent_50%)]" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(14,165,233,0.1),transparent_50%)]" />
-            </div>
-
-            <nav className="relative flex flex-col p-6 gap-2" aria-label="Navegación móvil">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={handleNavClick}
-                  className="px-4 py-3 text-lg text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="mt-6 pt-6 border-t border-border flex items-center gap-4">
-                {githubLink && (
-                  <a
-                    href={githubLink.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
-                    aria-label={githubLink.label}
-                  >
-                    <FiGithub size={22} />
-                  </a>
-                )}
-                {linkedinLink && (
-                  <a
-                    href={linkedinLink.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
-                    aria-label={linkedinLink.label}
-                  >
-                    <FiLinkedin size={22} />
-                  </a>
-                )}
-              </div>
-            </nav>
-          </div>
-        )}
+        {/* Menú móvil - mismo fondo que el navbar */}
+        <div
+          id="mobile-menu"
+          className={cn(
+            "md:hidden fixed inset-0 top-16 z-40 bg-background/95 backdrop-blur-lg transition-transform duration-300",
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          )}
+          aria-hidden={!isMobileMenuOpen}
+        >
+          <nav className="flex flex-col p-6 gap-2" aria-label="Navegación móvil">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={handleNavClick}
+                className="px-4 py-3 text-lg text-muted-foreground hover:text-foreground hover:bg-surface rounded-lg transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </header>
     </>
   );
