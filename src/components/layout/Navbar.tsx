@@ -138,30 +138,37 @@ export function Navbar() {
             </button>
           </div>
         </nav>
-
-        {/* Menú móvil - mismo fondo que el navbar */}
-        <div
-          id="mobile-menu"
-          className={cn(
-            "md:hidden fixed inset-0 top-16 z-40 bg-[#0a0a0a] transition-transform duration-300",
-            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          )}
-          aria-hidden={!isMobileMenuOpen}
-        >
-          <nav className="flex flex-col p-6 gap-2" aria-label="Navegación móvil">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={handleNavClick}
-                className="px-4 py-3 text-lg text-muted-foreground hover:text-foreground hover:bg-surface rounded-lg transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-        </div>
       </header>
+
+            {/* Menú móvil - FUERA del header */}
+      <div
+        id="mobile-menu"
+        className={cn(
+          "md:hidden fixed inset-0 top-16 z-40 transition-transform duration-300",
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        )}
+        aria-hidden={!isMobileMenuOpen}
+      >
+        {/* Fondo con gradientes tipo Hero pero más oscuro */}
+        <div className="absolute inset-0 bg-[#0a0a0a]">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(124,58,237,0.12),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(14,165,233,0.08),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,45,120,0.05),transparent_50%)]" />
+        </div>
+
+        <nav className="relative flex flex-col p-6 gap-2" aria-label="Navegación móvil">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={handleNavClick}
+              className="px-4 py-3 text-lg text-muted-foreground hover:text-foreground hover:bg-surface rounded-lg transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
     </>
   );
 }
