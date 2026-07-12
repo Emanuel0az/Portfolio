@@ -145,66 +145,57 @@ export function Navbar() {
           </div>
         </nav>
 
-                {/* Menú móvil */}
-        <div
-          id="mobile-menu"
-          className={cn(
-            "md:hidden fixed inset-0 top-16 z-40 transition-transform duration-300",
-            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          )}
-          aria-hidden={!isMobileMenuOpen}
-        >
-          {/* Fondo con gradientes sutiles */}
-          <div className="absolute inset-0 bg-background">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(124,58,237,0.12),transparent_60%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(14,165,233,0.08),transparent_60%)]" />
-            <div
-              className="absolute inset-0 opacity-[0.03]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-                backgroundSize: "60px 60px",
-              }}
-            />
-          </div>
-
-          <nav className="relative flex flex-col p-6 gap-2" aria-label="Navegación móvil">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={handleNavClick}
-                className="px-4 py-3 text-lg text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-            <div className="mt-6 pt-6 border-t border-border flex items-center gap-4">
-              {githubLink && (
-                <a
-                  href={githubLink.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
-                  aria-label={githubLink.label}
-                >
-                  <FiGithub size={22} />
-                </a>
-              )}
-              {linkedinLink && (
-                <a
-                  href={linkedinLink.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
-                  aria-label={linkedinLink.label}
-                >
-                  <FiLinkedin size={22} />
-                </a>
-              )}
+        {/* Menú móvil */}
+        {isMobileMenuOpen && (
+          <div
+            id="mobile-menu"
+            className="md:hidden fixed inset-0 top-16 z-40"
+            aria-hidden={!isMobileMenuOpen}
+          >
+            {/* Fondo sólido con gradientes */}
+            <div className="absolute inset-0 bg-[#0a0a0a]">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(124,58,237,0.15),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(14,165,233,0.1),transparent_50%)]" />
             </div>
-          </nav>
-        </div>
+
+            <nav className="relative flex flex-col p-6 gap-2" aria-label="Navegación móvil">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={handleNavClick}
+                  className="px-4 py-3 text-lg text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <div className="mt-6 pt-6 border-t border-border flex items-center gap-4">
+                {githubLink && (
+                  <a
+                    href={githubLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
+                    aria-label={githubLink.label}
+                  >
+                    <FiGithub size={22} />
+                  </a>
+                )}
+                {linkedinLink && (
+                  <a
+                    href={linkedinLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 text-foreground hover:text-primary hover:bg-surface rounded-lg transition-colors"
+                    aria-label={linkedinLink.label}
+                  >
+                    <FiLinkedin size={22} />
+                  </a>
+                )}
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
     </>
   );
