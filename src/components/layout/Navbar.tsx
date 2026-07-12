@@ -143,7 +143,7 @@ export function Navbar() {
         <div
           id="mobile-menu"
           className={cn(
-            "md:hidden fixed inset-0 top-16 z-40 bg-background/95 backdrop-blur-lg transition-transform duration-300",
+            "md:hidden fixed inset-0 top-16 z-40 bg-[#0a0a0a] transition-transform duration-300",
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           )}
           aria-hidden={!isMobileMenuOpen}
